@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>QR Generator</title>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <style>
     :root{
       --bg:#0b0f14;
@@ -20,7 +19,7 @@
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background: radial-gradient(1200px 800px at 10% 10%, rgba(125,211,252,.14), transparent 55%),
                   radial-gradient(900px 600px at 85% 15%, rgba(99,102,241,.10), transparent 60%),
                   radial-gradient(1000px 700px at 50% 90%, rgba(34,197,94,.10), transparent 55%),
@@ -44,7 +43,7 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .panel .head{
+    .head{
       padding:18px 18px 14px;
       border-bottom:1px solid var(--line);
       display:flex;
@@ -52,23 +51,9 @@
       justify-content:space-between;
       gap:12px;
     }
-    .title{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    .title h1{
-      margin:0;
-      font-size:18px;
-      letter-spacing:.2px;
-      font-weight:650;
-    }
-    .title p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.35;
-    }
+    .title{display:flex;flex-direction:column;gap:6px}
+    .title h1{margin:0;font-size:18px;letter-spacing:.2px;font-weight:650}
+    .title p{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
     .badge{
       font-size:12px;
       color:rgba(231,238,248,.85);
@@ -78,28 +63,9 @@
       border-radius:999px;
       white-space:nowrap;
     }
-    .content{
-      padding:16px 18px 18px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-    label{
-      font-size:12px;
-      color:rgba(231,238,248,.86);
-      display:block;
-      margin:0 0 8px;
-      letter-spacing:.2px;
-    }
-    .seg{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      padding:10px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.18);
-      border-radius:14px;
-    }
+    .content{padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px}
+    label{font-size:12px;color:rgba(231,238,248,.86);display:block;margin:0 0 8px;letter-spacing:.2px}
+    .seg{display:flex;gap:8px;flex-wrap:wrap;padding:10px;border:1px solid var(--line);background: rgba(0,0,0,.18);border-radius:14px}
     .chip{
       appearance:none;
       border:1px solid var(--line);
@@ -130,25 +96,12 @@
       font-size:14px;
       transition:border-color .12s ease, box-shadow .12s ease;
     }
-    textarea{
-      min-height:140px;
-      resize:vertical;
-      line-height:1.35;
-    }
+    textarea{min-height:140px;resize:vertical;line-height:1.35}
     textarea:focus, input[type="text"]:focus, select:focus{
       border-color: rgba(125,211,252,.55);
       box-shadow: 0 0 0 4px rgba(125,211,252,.12);
     }
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .row3{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:12px;
-    }
+    .row3{display:grid;grid-template-columns: 1fr 1fr 1fr;gap:12px}
     .sliderWrap{
       display:flex;
       align-items:center;
@@ -158,9 +111,7 @@
       border-radius:14px;
       padding:10px 12px;
     }
-    input[type="range"]{
-      width:100%;
-    }
+    input[type="range"]{width:100%}
     .kv{
       font-variant-numeric: tabular-nums;
       font-size:12px;
@@ -172,11 +123,7 @@
       min-width:64px;
       text-align:center;
     }
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
     .btn{
       appearance:none;
       border:1px solid var(--line);
@@ -190,32 +137,11 @@
     }
     .btn:hover{border-color: rgba(125,211,252,.42)}
     .btn:active{transform: translateY(1px)}
-    .btn.primary{
-      border-color: rgba(125,211,252,.55);
-      background: rgba(125,211,252,.12);
-    }
-    .btn.danger{
-      border-color: rgba(248,113,113,.55);
-      background: rgba(248,113,113,.10);
-    }
-    .hint{
-      font-size:12px;
-      color:var(--muted);
-      line-height:1.35;
-    }
-    .qrPanel{
-      display:flex;
-      flex-direction:column;
-      height:100%;
-    }
-    .qrBody{
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      align-items:center;
-      justify-content:center;
-    }
+    .btn.primary{border-color: rgba(125,211,252,.55);background: rgba(125,211,252,.12)}
+    .btn.danger{border-color: rgba(248,113,113,.55);background: rgba(248,113,113,.10)}
+    .hint{font-size:12px;color:var(--muted);line-height:1.35}
+    .qrPanel{display:flex;flex-direction:column;height:100%}
+    .qrBody{padding:18px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
     .qrBox{
       width:100%;
       aspect-ratio: 1 / 1;
@@ -226,7 +152,6 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      position:relative;
       overflow:hidden;
     }
     canvas{
@@ -237,13 +162,7 @@
       background: #fff;
       padding: 10px;
     }
-    .meta{
-      width:100%;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
+    .meta{width:100%;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
     .pill{
       font-size:12px;
       color:rgba(231,238,248,.90);
@@ -256,7 +175,7 @@
     @media (max-width: 860px){
       .app{grid-template-columns:1fr}
       .qrBox{max-width: 520px}
-      .row,.row3{grid-template-columns:1fr}
+      .row3{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -268,7 +187,7 @@
           <h1>QR Generator</h1>
           <p>Payload eingeben, QR wird sofort aktualisiert. Download als PNG.</p>
         </div>
-        <div class="badge" id="statusBadge">bereit</div>
+        <div class="badge" id="statusBadge">lädt…</div>
       </div>
 
       <div class="content">
@@ -282,7 +201,7 @@
           </div>
         </div>
 
-        <div id="payloadArea">
+        <div>
           <label for="payload">Payload</label>
           <textarea id="payload" spellcheck="false"></textarea>
           <div class="hint" id="payloadHint"></div>
@@ -321,7 +240,7 @@
         </div>
 
         <div class="hint">
-          Website-QR: URL inkl. https://. WLAN-QR: wird automatisch im Standardformat erzeugt.
+          Website-QR: URL inkl. https://. WLAN-QR: Standardformat <code>WIFI:T:WPA;S:SSID;P:PASS;;</code>
         </div>
       </div>
     </div>
@@ -330,7 +249,7 @@
       <div class="head">
         <div class="title">
           <h1>Vorschau</h1>
-          <p>Canvas basiert. Funktioniert direkt auf GitHub Pages.</p>
+          <p>Reines HTML/JS. Kein Backend.</p>
         </div>
         <div class="badge" id="charCount">0 Zeichen</div>
       </div>
@@ -347,7 +266,7 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js" integrity="sha512-5mVvC1fY1QdF0y4e6Q7sH+S1u05M7Vt5Qx6+5vZ7aU1o0sQO3gYbXWQH5kQv3p8HhFf4d8kq7q7dK5pHkQJ2jQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script>
     const presetBar = document.getElementById("presetBar");
     const payload = document.getElementById("payload");
@@ -359,7 +278,7 @@
     const ecc = document.getElementById("ecc");
     const downloadBtn = document.getElementById("downloadBtn");
     const copyBtn = document.getElementById("copyBtn");
-    const clearBtn = document.getElementById("clearBtn")
+    const clearBtn = document.getElementById("clearBtn");
     const statusBadge = document.getElementById("statusBadge");
     const charCount = document.getElementById("charCount");
     const metaSize = document.getElementById("metaSize");
@@ -367,20 +286,8 @@
     const metaMargin = document.getElementById("metaMargin");
     const canvas = document.getElementById("qrCanvas");
 
-    const qr = new QRious({
-      element: canvas,
-      value: "",
-      size: parseInt(size.value, 10),
-      level: ecc.value,
-      padding: parseInt(margin.value, 10),
-      background: "white",
-      foreground: "black"
-    });
-
     function setActivePreset(p) {
-      [...presetBar.querySelectorAll(".chip")].forEach(b => {
-        b.dataset.active = (b.dataset.preset === p) ? "true" : "false";
-      });
+      [...presetBar.querySelectorAll(".chip")].forEach(b => b.dataset.active = (b.dataset.preset === p) ? "true" : "false");
       setPresetDefaults(p);
       render();
     }
@@ -392,17 +299,17 @@
         return;
       }
       if (p === "url") {
-        payload.value = payload.value && payload.value.startsWith("http") ? payload.value : "https://example.com";
+        payload.value = payload.value && payload.value.trim() ? payload.value : "https://example.com";
         payloadHint.textContent = "URL: https://example.com";
         return;
       }
       if (p === "wifi") {
         payload.value = "WIFI:T:WPA;S:MyWiFi;P:MyPassword;;";
-        payloadHint.textContent = "WLAN-Format: WIFI:T:WPA;S:<SSID>;P:<PASS>;;  (T: nopass/WEP/WPA/WPA2/WPA3)";
+        payloadHint.textContent = "WLAN: WIFI:T:WPA;S:<SSID>;P:<PASS>;;  (T: nopass/WEP/WPA/WPA2/WPA3)";
         return;
       }
       if (p === "email") {
-        payload.value = payload.value.startsWith("mailto:") ? payload.value : "mailto:hello@example.com?subject=Hi&body=Message";
+        payload.value = "mailto:hello@example.com?subject=Hi&body=Message";
         payloadHint.textContent = "E-Mail: mailto:adresse?subject=...&body=...";
         return;
       }
@@ -413,7 +320,7 @@
       return btn ? btn.dataset.preset : "text";
     }
 
-    function sanitizeValue(v) {
+    function normalizePayload(v) {
       const p = activePreset();
       if (p === "url") {
         const t = v.trim();
@@ -424,31 +331,51 @@
       return v;
     }
 
-    function render() {
+    function eccLevel() {
+      const map = { L: "low", M: "medium", Q: "quartile", H: "high" };
+      return map[ecc.value] || "medium";
+    }
+
+    async function render() {
+      if (!window.QRCode) {
+        statusBadge.textContent = "library fehlt";
+        return;
+      }
+
       const s = parseInt(size.value, 10);
       const m = parseInt(margin.value, 10);
-      const level = ecc.value;
+      const v = normalizePayload(payload.value);
 
       sizeVal.textContent = String(s);
       marginVal.textContent = String(m);
 
       metaSize.textContent = s + "×" + s;
-      metaEcc.textContent = "ECC: " + level;
+      metaEcc.textContent = "ECC: " + ecc.value;
       metaMargin.textContent = "Rand: " + m;
+
+      charCount.textContent = (v.length || 0) + " Zeichen";
+      statusBadge.textContent = v ? "ok" : "leer";
 
       canvas.width = s;
       canvas.height = s;
 
-      const v = sanitizeValue(payload.value);
-      qr.set({
-        value: v,
-        size: s,
-        level: level,
-        padding: m
-      });
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, s, s);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, s, s);
 
-      charCount.textContent = (v.length || 0) + " Zeichen";
-      statusBadge.textContent = v ? "ok" : "leer";
+      if (!v) return;
+
+      try {
+        await window.QRCode.toCanvas(canvas, v, {
+          errorCorrectionLevel: eccLevel(),
+          margin: m,
+          width: s,
+          color: { dark: "#000000", light: "#ffffff" }
+        });
+      } catch (e) {
+        statusBadge.textContent = "fehler";
+      }
     }
 
     presetBar.addEventListener("click", (e) => {
@@ -463,43 +390,24 @@
     ecc.addEventListener("change", render);
 
     downloadBtn.addEventListener("click", () => {
-      const v = sanitizeValue(payload.value);
+      const v = normalizePayload(payload.value);
       if (!v) return;
-
-      const s = parseInt(size.value, 10);
-      const m = parseInt(margin.value, 10);
-      const level = ecc.value;
-
-      const tmp = document.createElement("canvas");
-      tmp.width = s;
-      tmp.height = s;
-
-      const tmpQr = new QRious({
-        element: tmp,
-        value: v,
-        size: s,
-        level: level,
-        padding: m,
-        background: "white",
-        foreground: "black"
-      });
-
       const a = document.createElement("a");
       const ts = new Date().toISOString().replace(/[:.]/g, "-");
       a.download = "qr-" + ts + ".png";
-      a.href = tmpQr.toDataURL("image/png");
+      a.href = canvas.toDataURL("image/png");
       document.body.appendChild(a);
       a.click();
       a.remove();
     });
 
     copyBtn.addEventListener("click", async () => {
-      const v = sanitizeValue(payload.value);
+      const v = normalizePayload(payload.value);
       if (!v) return;
       try {
         await navigator.clipboard.writeText(v);
         statusBadge.textContent = "kopiert";
-        setTimeout(() => statusBadge.textContent = "ok", 700);
+        setTimeout(() => statusBadge.textContent = v ? "ok" : "leer", 700);
       } catch (e) {
         statusBadge.textContent = "clipboard block";
         setTimeout(() => statusBadge.textContent = v ? "ok" : "leer", 900);
@@ -512,6 +420,7 @@
     });
 
     setPresetDefaults("text");
+    statusBadge.textContent = "ok";
     render();
   </script>
 </body>
